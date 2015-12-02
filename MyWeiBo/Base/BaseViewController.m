@@ -13,10 +13,16 @@
 @end
 
 @implementation BaseViewController
+-(id)initWithCoder:(NSCoder *)aDecoder{
 
+    if (self = [super initWithCoder:aDecoder]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadImage) name:kThemeChange object:nil];
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self loadImage];
 }
 
 
@@ -26,14 +32,41 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)loadImage{
+    
+    TheameManager *manager = [TheameManager sharedInstance];
+    UIImage *img = [manager getTheameImage:@"bg_home@2x.jpg"];
+    
+    UIImage *newImage = [self getNewImage:img];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:newImage];
 }
-*/
+
+-(void)dealloc{
+
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+//图片拉伸
+//-(UIImage*)imageResize:(UIImage*)image withSizeTo:(CGSize)newSize{
+//
+//    CGFloat scale = [[UIScreen mainScreen]scale];
+//    UIGraphicsBeginImageContextWithOptions(newSize, NO, scale);
+//    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+////    UIGraphicsEndImageContext();
+//    return newImage;
+//}
+
+-(UIImage*)getNewImage:(UIImage*)img{
+
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [img drawInRect:self.view.frame];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+
 
 @end

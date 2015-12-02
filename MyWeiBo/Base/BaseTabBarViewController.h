@@ -10,6 +10,6 @@
 
 @interface BaseTabBarViewController : UITabBarController
 
-@property(nonatomic,strong)UIImageView *selectImg;
+@property(nonatomic,strong)ThemeImageView *selectImg;
 -(void)creatTabbar;
 @end

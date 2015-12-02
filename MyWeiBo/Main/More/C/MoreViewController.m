@@ -16,22 +16,52 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [self loadName];
+    [self loadImage];
+    TheameManager *manager = [TheameManager sharedInstance];
+    _themeLable.text = manager.theameName;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+
+    if (self = [super initWithCoder:aDecoder]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadImage) name:kThemeChange object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeThemeLable) name:@"tName" object:nil];
+ 
+
+      
+    }
+    return self;
+}
+-(void)loadImage{
+
+    TheameManager *manager = [TheameManager sharedInstance];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[manager getTheameImage:@"bg_home@2x.jpg"]];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)changeThemeLable{
+    
+    TheameManager *manager = [TheameManager sharedInstance];
+    _themeLable.text = manager.theameName;
 }
-*/
 
+-(void)loadName{
+
+    _row1Lable.fontColor = @"More_Item_Text_color";
+    _row2Lable.fontColor = @"More_Item_Text_color";
+    _row3Lable.fontColor = @"More_Item_Text_color";
+    _row4Lable.fontColor = @"More_Item_Text_color";
+    
+    _row1Image.imgName = @"more_icon_theme@2x.png";
+    _row2Image.imgName = @"more_icon_account@2x.png";
+    _row3Image.imgName = @"more_icon_feedback@2x.png";
+
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ThemeViewController *theme = [[ThemeViewController alloc]init];
+    theme.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:theme animated:YES];
+}
 @end

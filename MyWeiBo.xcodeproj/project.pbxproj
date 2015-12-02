@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		888AEBA01C0E824C00D395F1 /* ThemeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 888AEB9F1C0E824C00D395F1 /* ThemeButton.m */; };
+		888AEBA31C0E893A00D395F1 /* ThemeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888AEBA21C0E893A00D395F1 /* ThemeImageView.m */; };
 		88A7EF5A1C0D3D10006037F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A7EF591C0D3D10006037F7 /* main.m */; };
 		88A7EF5D1C0D3D10006037F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A7EF5C1C0D3D10006037F7 /* AppDelegate.m */; };
 		88A7EF651C0D3D10006037F7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88A7EF641C0D3D10006037F7 /* Images.xcassets */; };
@@ -42,6 +44,9 @@
 		88A7F25E1C0DA0D7006037F7 /* TheameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A7F25D1C0DA0D7006037F7 /* TheameManager.m */; };
 		88A7F2601C0DA2BA006037F7 /* Skins in Resources */ = {isa = PBXBuildFile; fileRef = 88A7F25F1C0DA2BA006037F7 /* Skins */; };
 		88A7F2631C0DABC3006037F7 /* Theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88A7F2621C0DABC3006037F7 /* Theme.plist */; };
+		88C859181C0EC9B700208FD8 /* ThemeLable.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C859171C0EC9B700208FD8 /* ThemeLable.m */; };
+		88C8591C1C0EE8E400208FD8 /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8591A1C0EE8E400208FD8 /* ThemeViewController.m */; };
+		88C8591D1C0EE8E400208FD8 /* ThemeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C8591B1C0EE8E400208FD8 /* ThemeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +60,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		888AEB9E1C0E824C00D395F1 /* ThemeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeButton.h; sourceTree = "<group>"; };
+		888AEB9F1C0E824C00D395F1 /* ThemeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeButton.m; sourceTree = "<group>"; };
+		888AEBA11C0E893A00D395F1 /* ThemeImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeImageView.h; sourceTree = "<group>"; };
+		888AEBA21C0E893A00D395F1 /* ThemeImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeImageView.m; sourceTree = "<group>"; };
 		88A7EF541C0D3D10006037F7 /* MyWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A7EF581C0D3D10006037F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88A7EF591C0D3D10006037F7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -119,6 +128,11 @@
 		88A7F2611C0DA3FC006037F7 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		88A7F2621C0DABC3006037F7 /* Theme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Theme.plist; sourceTree = "<group>"; };
 		88A7F2641C0DB6DF006037F7 /* weibo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = weibo.pch; sourceTree = "<group>"; };
+		88C859161C0EC9B700208FD8 /* ThemeLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeLable.h; sourceTree = "<group>"; };
+		88C859171C0EC9B700208FD8 /* ThemeLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeLable.m; sourceTree = "<group>"; };
+		88C859191C0EE8E400208FD8 /* ThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeViewController.h; sourceTree = "<group>"; };
+		88C8591A1C0EE8E400208FD8 /* ThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeViewController.m; sourceTree = "<group>"; };
+		88C8591B1C0EE8E400208FD8 /* ThemeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +362,9 @@
 			children = (
 				88A7EFAC1C0D40F1006037F7 /* MoreViewController.h */,
 				88A7EFAD1C0D40F1006037F7 /* MoreViewController.m */,
+				88C859191C0EE8E400208FD8 /* ThemeViewController.h */,
+				88C8591A1C0EE8E400208FD8 /* ThemeViewController.m */,
+				88C8591B1C0EE8E400208FD8 /* ThemeViewController.xib */,
 				88A7EFB51C0D41C5006037F7 /* MoreStoryboard.storyboard */,
 			);
 			path = C;
@@ -407,6 +424,12 @@
 				88A7F2621C0DABC3006037F7 /* Theme.plist */,
 				88A7F25C1C0DA0D7006037F7 /* TheameManager.h */,
 				88A7F25D1C0DA0D7006037F7 /* TheameManager.m */,
+				888AEB9E1C0E824C00D395F1 /* ThemeButton.h */,
+				888AEB9F1C0E824C00D395F1 /* ThemeButton.m */,
+				88C859161C0EC9B700208FD8 /* ThemeLable.h */,
+				88C859171C0EC9B700208FD8 /* ThemeLable.m */,
+				888AEBA11C0E893A00D395F1 /* ThemeImageView.h */,
+				888AEBA21C0E893A00D395F1 /* ThemeImageView.m */,
 				88A7F24A1C0D880F006037F7 /* sinaweibo_ios_sdk */,
 				88A7F22F1C0D7778006037F7 /* MMDrawerController */,
 				88A7F2611C0DA3FC006037F7 /* Common.h */,
@@ -555,6 +578,7 @@
 				88A7EFB41C0D418C006037F7 /* ProfileStoryboard.storyboard in Resources */,
 				88A7EF651C0D3D10006037F7 /* Images.xcassets in Resources */,
 				88A7F2471C0D783B006037F7 /* Left.storyboard in Resources */,
+				88C8591D1C0EE8E400208FD8 /* ThemeViewController.xib in Resources */,
 				88A7EFA21C0D3FF5006037F7 /* HomeStoryboard.storyboard in Resources */,
 				88A7EFB61C0D41C5006037F7 /* MoreStoryboard.storyboard in Resources */,
 				88A7F2491C0D7849006037F7 /* Right.storyboard in Resources */,
@@ -577,6 +601,7 @@
 			files = (
 				88A7EF991C0D3EB9006037F7 /* BaseNavigationController.m in Sources */,
 				88A7F23B1C0D7778006037F7 /* MMDrawerVisualState.m in Sources */,
+				88C859181C0EC9B700208FD8 /* ThemeLable.m in Sources */,
 				88A7F2571C0D880F006037F7 /* JSONKit.m in Sources */,
 				88A7F25E1C0DA0D7006037F7 /* TheameManager.m in Sources */,
 				88A7EFAB1C0D40D8006037F7 /* ProfileViewController.m in Sources */,
@@ -584,9 +609,12 @@
 				88A7F23F1C0D77DE006037F7 /* MMExampleDrawerVisualStateManager.m in Sources */,
 				88A7F2391C0D7778006037F7 /* MMDrawerBarButtonItem.m in Sources */,
 				88A7EF5D1C0D3D10006037F7 /* AppDelegate.m in Sources */,
+				888AEBA31C0E893A00D395F1 /* ThemeImageView.m in Sources */,
 				88A7EF9D1C0D3F3E006037F7 /* BaseTabBarViewController.m in Sources */,
+				88C8591C1C0EE8E400208FD8 /* ThemeViewController.m in Sources */,
 				88A7EF961C0D3E81006037F7 /* BaseViewController.m in Sources */,
 				88A7F2451C0D782B006037F7 /* RightViewController.m in Sources */,
+				888AEBA01C0E824C00D395F1 /* ThemeButton.m in Sources */,
 				88A7F25B1C0D880F006037F7 /* SinaWeiboRequest.m in Sources */,
 				88A7F2591C0D880F006037F7 /* SinaWeibo.m in Sources */,
 				88A7F2421C0D7818006037F7 /* LeftViewController.m in Sources */,
@@ -714,8 +742,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MyWeiBo/weibo.pch";
 				INFOPLIST_FILE = MyWeiBo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -725,8 +755,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MyWeiBo/weibo.pch";
 				INFOPLIST_FILE = MyWeiBo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -785,6 +817,7 @@
 				88A7EF791C0D3D10006037F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88A7EF7A1C0D3D10006037F7 /* Build configuration list for PBXNativeTarget "MyWeiBoTests" */ = {
 			isa = XCConfigurationList;
@@ -793,6 +826,7 @@
 				88A7EF7C1C0D3D10006037F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -17,6 +17,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self loadImage];
 }
+
+-(id)initWithCoder:(NSCoder *)aDecoder{
+
+    if (self = [super initWithCoder:aDecoder]) {
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadImage) name:kThemeChange object:nil];
+    }
+    return self;
+}
+
+
+-(void)loadImage{
+    
+    TheameManager *manager = [TheameManager sharedInstance];
+    UIImage *img = [manager getTheameImage:@"mask_titlebar64@2x.png"];
+    [self.navigationBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
+}
+
+-(void)dealloc{
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 @end

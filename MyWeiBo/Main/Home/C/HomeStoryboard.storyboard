@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Mfe-Wh-tOx">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -20,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-604" y="327"/>
         </scene>
-        <!--Home View Controller-->
+        <!--主页-->
         <scene sceneID="UPU-qv-dBB">
             <objects>
                 <viewController id="gKT-SP-X5y" customClass="HomeViewController" sceneMemberID="viewController">
@@ -33,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wlt-dp-Ju8"/>
+                    <navigationItem key="navigationItem" title="主页" id="wlt-dp-Ju8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDs-ax-p0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

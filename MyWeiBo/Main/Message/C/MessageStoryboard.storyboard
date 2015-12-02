@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dzL-sZ-2dm">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -20,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-616" y="303"/>
         </scene>
-        <!--Message View Controller-->
+        <!--消息-->
         <scene sceneID="H6P-Pv-Yqc">
             <objects>
                 <viewController id="3Hl-jD-q0r" customClass="MessageViewController" sceneMemberID="viewController">
@@ -33,36 +34,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ZrU-VV-Vy7">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="ocR-8m-qps">
-                            <connections>
-                                <segue destination="Ese-kW-Xu5" kind="push" id="G5i-P4-YxM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="消息" id="ZrU-VV-Vy7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="moD-XN-7n6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="22" y="204"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="pbF-MR-JAr">
-            <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Ese-kW-Xu5" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="j1W-Gd-eaV"/>
-                        <viewControllerLayoutGuide type="bottom" id="F9p-CJ-aYW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Luf-pU-Ht6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="H1F-o1-2Vl"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wor-dC-p5i" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="652" y="67"/>
         </scene>
     </scenes>
 </document>

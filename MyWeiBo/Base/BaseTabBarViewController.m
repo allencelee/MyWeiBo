@@ -15,7 +15,6 @@
     [super viewDidLoad];
     [self creatSubC];
     [self creatTabbar];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(creatTabbar) name:@"noti" object:nil];
 
 }
 
@@ -45,16 +44,10 @@
 
 -(void)creatTabbar{
 
-    for (UIView *view in self.tabBar.subviews) {
-        
-        [view removeFromSuperview];
-    }
-    NSLog(@"换主题");
-    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0, -6, kScreenWidth, 55)];
+    ThemeImageView *background = [[ThemeImageView alloc]initWithFrame:CGRectMake(0, -6, kScreenWidth, 55)];
     
-//    background.image = [UIImage imageNamed:@"mask_navbar"];
-    TheameManager *manager = [TheameManager sharedInstance];
-    background.image = [manager getTheameImage:@"mask_navbar"];
+    background.imgName = @"mask_navbar";
+
     [self.tabBar addSubview:background];
     
     CGFloat itemWidth = kScreenWidth/5;
@@ -68,21 +61,24 @@
     
     for (int i=0; i<imageArr.count; i++) {
         
-        UIButton *tabbarButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        ThemeButton *tabbarButton = [ThemeButton buttonWithType:UIButtonTypeCustom];
         tabbarButton.frame = CGRectMake(i*itemWidth, 2, itemWidth, 45);
         tabbarButton.tag = 1000+i;
         NSString *imageName = imageArr[i];
         
-        //UIImage *buttonImg = [UIImage imageNamed:imageName];
-        UIImage *buttonImg = [manager getTheameImage:imageName];
-        [tabbarButton setImage:buttonImg forState:UIControlStateNormal];
+//        UIImage *buttonImg = [UIImage imageNamed:imageName];
+
+//        [tabbarButton setImage:buttonImg forState:UIControlStateNormal];
+
+        tabbarButton.imgName = imageName;
+        
         [tabbarButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.tabBar addSubview:tabbarButton];
         
     }
-    _selectImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 2, itemWidth, 45)];
-//    _selectImg.image = [UIImage imageNamed:@"home_bottom_tab_arrow.png"];
-    _selectImg.image = [manager getTheameImage:@"home_bottom_tab_arrow.png"];
+    _selectImg = [[ThemeImageView alloc]initWithFrame:CGRectMake(0, 2, itemWidth, 45)];
+    _selectImg.imgName= @"home_bottom_tab_arrow.png";
+
 
     [self.tabBar addSubview:_selectImg];
 }

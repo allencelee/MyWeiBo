@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 @interface TheameManager : NSObject
 @property(nonatomic,copy)NSString *theameName;
-@property(nonatomic,strong)NSDictionary *dic;
-+(id)sharedInstance;
 -(UIImage *)getTheameImage:(NSString *)imageName;
+-(UIColor*)getThemePathWithColor:(NSString *)colorName;
++(id)sharedInstance;
 @end

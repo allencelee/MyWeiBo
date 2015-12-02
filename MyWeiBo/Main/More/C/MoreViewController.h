@@ -7,7 +7,20 @@
 //
 
 #import "BaseViewController.h"
+#import "ThemeViewController.h"
+@interface MoreViewController : UITableViewController
 
-@interface MoreViewController : BaseViewController
+@property (weak, nonatomic) IBOutlet ThemeImageView *row1Image;
+@property (weak, nonatomic) IBOutlet ThemeImageView *row2Image;
+@property (weak, nonatomic) IBOutlet ThemeImageView *row3Image;
+@property (weak, nonatomic) IBOutlet ThemeLable *row1Lable;
+@property (weak, nonatomic) IBOutlet ThemeLable *row2Lable;
+@property (weak, nonatomic) IBOutlet ThemeLable *row3Lable;
+@property (weak, nonatomic) IBOutlet ThemeLable *row4Lable;
+@property (weak, nonatomic) IBOutlet ThemeLable *themeLable;
+
+
+
+
 
 @end
