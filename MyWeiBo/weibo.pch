@@ -19,5 +19,6 @@
 #define kAppKey             @"953788732"
 #define kAppSecret          @"01bf423f5917e3d7672eda22c53a9365"
 #define kAppRedirectURI     @"http://www.baidu.com"
-#define kThemeChange        @"ThemeChange"
+
+
 #endif

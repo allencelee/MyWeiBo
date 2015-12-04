@@ -199,8 +199,8 @@
 	}
     
     //--------------debug---------------
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"json:%@",string);
+//    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    NSLog(@"json:%@",string);
     
 }
 

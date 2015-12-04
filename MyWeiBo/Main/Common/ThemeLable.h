@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define kThemeChange        @"ThemeChange"
 @interface ThemeLable : UILabel
 @property(nonatomic,copy)NSString *fontColor;
 @end

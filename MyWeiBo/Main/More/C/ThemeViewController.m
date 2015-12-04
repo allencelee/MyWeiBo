@@ -43,6 +43,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    TheameManager *manager = [TheameManager sharedInstance];
     static NSString *identifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
@@ -50,6 +51,13 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     cell.textLabel.text = _data[indexPath.row];
+    
+    if ([_data[indexPath.row] isEqualToString:manager.theameName]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }else{
+    
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
 
@@ -58,5 +66,7 @@
     TheameManager *manager = [TheameManager sharedInstance];
     manager.theameName = _data[indexPath.row];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"tName" object:nil];
+    [_themeTableView reloadData];
+    
 }
 @end

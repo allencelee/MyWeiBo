@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface BaseTabBarViewController : UITabBarController
 
 @property(nonatomic,strong)ThemeImageView *selectImg;

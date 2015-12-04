@@ -24,7 +24,7 @@
         <!--主页-->
         <scene sceneID="UPU-qv-dBB">
             <objects>
-                <viewController id="gKT-SP-X5y" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="gKT-SP-X5y" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CeI-5M-FWK"/>
                         <viewControllerLayoutGuide type="bottom" id="V2r-H0-iQz"/>
@@ -32,9 +32,24 @@
                     <view key="view" contentMode="scaleToFill" id="raE-BV-AZ4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="29l-O7-MzC" customClass="MyTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="29l-O7-MzC" firstAttribute="leading" secondItem="raE-BV-AZ4" secondAttribute="leading" id="1cv-4c-1jP"/>
+                            <constraint firstItem="29l-O7-MzC" firstAttribute="bottom" secondItem="V2r-H0-iQz" secondAttribute="top" id="F8b-UW-2eb"/>
+                            <constraint firstAttribute="trailing" secondItem="29l-O7-MzC" secondAttribute="trailing" id="rsS-Iv-5W0"/>
+                            <constraint firstItem="29l-O7-MzC" firstAttribute="top" secondItem="raE-BV-AZ4" secondAttribute="top" id="ulj-Kg-IgO"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="主页" id="wlt-dp-Ju8"/>
+                    <connections>
+                        <outlet property="homeTableView" destination="29l-O7-MzC" id="Og9-RR-xOb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDs-ax-p0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

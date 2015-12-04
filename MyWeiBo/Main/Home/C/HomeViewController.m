@@ -9,7 +9,8 @@
 #import "HomeViewController.h"
 #import "AppDelegate.h"
 #import "SinaWeibo.h"
-@interface HomeViewController ()
+#import "cellLayoutModel.h"
+@interface HomeViewController ()<SinaWeiboRequestDelegate>
 
 @end
 
@@ -18,7 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     SinaWeibo *sinaWibo = [self sinaweibo];
-    [sinaWibo logIn];
+    
+    if (sinaWibo.isAuthValid) {
+        
+        [sinaWibo requestWithURL:@"statuses/home_timeline.json" params:nil httpMethod:@"GET" delegate:self];
+    }else{
+    
+        [sinaWibo logIn];
+    }
     
 }
 
@@ -28,19 +36,28 @@
     return  delegate.sinaWeibo;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - sinaWeiboReqyestDelegate
+
+- (void)request:(SinaWeiboRequest *)request didFailWithError:(NSError *)error;{
+
+    NSLog(@"请求失败");
+}
+- (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result{
+
+    NSMutableArray *data = [NSMutableArray array];
+
+    NSLog(@"请求成功");
+    NSArray *weiboArr = result[@"statuses"];
+    for (NSDictionary *dic in weiboArr) {
+        CellLayoutModel *layout = [[CellLayoutModel alloc]init];
+        WeiboModel *weiboMdel = [[WeiboModel alloc]initWithDictionary:dic error:nil];
+        layout.weiboModel = weiboMdel;
+        [data addObject:layout];
+    }
+    _homeTableView.data = [data copy];
+    [_homeTableView reloadData];
+
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

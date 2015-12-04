@@ -21,6 +21,7 @@
     [self loadImage];
     TheameManager *manager = [TheameManager sharedInstance];
     _themeLable.text = manager.theameName;
+    
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
@@ -37,7 +38,7 @@
 -(void)loadImage{
 
     TheameManager *manager = [TheameManager sharedInstance];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[manager getTheameImage:@"bg_home@2x.jpg"]];
+    self.view.backgroundColor = [manager getThemePathWithColor:@"More_Item_Line_color"];
 }
 
 -(void)changeThemeLable{
@@ -60,8 +61,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ThemeViewController *theme = [[ThemeViewController alloc]init];
-    theme.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:theme animated:YES];
+    if (indexPath.row == 0&& indexPath.section ==0) {
+        ThemeViewController *theme = [[ThemeViewController alloc]init];
+        theme.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:theme animated:YES];
+    }
+    
 }
+
+
 @end

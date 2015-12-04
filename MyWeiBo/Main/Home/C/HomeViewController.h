@@ -7,7 +7,11 @@
 //
 
 #import "BaseViewController.h"
-
+#import "WeiboModel.h"
+#import "MyTableView.h"
 @interface HomeViewController : BaseViewController
+
+@property (weak, nonatomic) IBOutlet MyTableView *homeTableView;
+
 
 @end

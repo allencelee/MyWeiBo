@@ -18,6 +18,7 @@
     [super viewDidLoad];
 
     [self loadImage];
+    self.navigationBar.translucent = NO;
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
