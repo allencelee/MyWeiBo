@@ -38,7 +38,7 @@
                             <constraint firstAttribute="width" constant="113" id="5PQ-6o-Zol"/>
                             <constraint firstAttribute="height" constant="21" id="yLI-nD-fjI"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>

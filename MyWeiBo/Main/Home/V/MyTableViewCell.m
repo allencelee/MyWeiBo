@@ -42,6 +42,49 @@
     _weiboTextLable.text = _layoutModel.weiboModel.text;
     _weiboTextLable.numberOfLines = 0;
     
+    //设置imgView的frame
+    self.weiboImageView.frame= self.layoutModel.weiboImageFrame;
+    [_weiboImageView sd_setImageWithURL:[NSURL URLWithString:_layoutModel.weiboModel.thumbnail_pic]];
+    //--转发
+
+    UIImage *img = [[TheameManager sharedInstance]getTheameImage:@"timeline_rt_border_9.png"];
+    img = [img stretchableImageWithLeftCapWidth:30 topCapHeight:20];
+    self.reweetBgimagView.image = img;
+    self.reweetBgimagView.frame = _layoutModel.reweetBgimgFrame;
+    self.reweetTextLable.frame = _layoutModel.reweetTextFrame;
+    self.reweetTextLable.text = _layoutModel.weiboModel.retweeted_status.text;
+    
+    
+}
+
+-(ThemeLable*)reweetTextLable{
+
+    if (_reweetTextLable == nil) {
+        _reweetTextLable = [[ThemeLable alloc]init];
+        _reweetTextLable.numberOfLines = 0;
+        _reweetTextLable.font = [UIFont systemFontOfSize:15];
+        [self.contentView addSubview:_reweetTextLable];
+        
+    }
+    return _reweetTextLable;
+}
+
+-(UIImageView*)reweetBgimagView{
+
+    if (_reweetBgimagView == nil) {
+        _reweetBgimagView = [[ThemeImageView alloc]init];
+        [self.contentView addSubview:_reweetBgimagView];
+    }
+    return _reweetBgimagView;
+}
+
+-(UIImageView*)weiboImageView{
+
+    if (_weiboImageView == nil) {
+        _weiboImageView = [[UIImageView alloc]init];
+    }
+    [self.contentView addSubview:_weiboImageView];
+    return  _weiboImageView;
 }
 
 -(NSString*)getSourceString:(NSString *)source{

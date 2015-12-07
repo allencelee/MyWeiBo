@@ -13,4 +13,9 @@
 @property(nonatomic,strong)WeiboModel *weiboModel;
 @property(nonatomic,assign)CGRect textFrame;
 @property(nonatomic,assign)CGFloat cellHeight;
+@property(nonatomic,assign)CGRect weiboImageFrame;
+
+@property(nonatomic,assign)CGRect reweetTextFrame;
+@property(nonatomic,assign)CGRect reweetBgimgFrame;
+
 @end

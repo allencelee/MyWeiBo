@@ -20,4 +20,9 @@
 //@property(nonatomic,strong)WeiboModel *model;
 @property(nonatomic,strong)CellLayoutModel *layoutModel;
 @property(nonatomic,strong)UILabel *weiboTextLable;
+@property(nonatomic,strong)UIImageView *weiboImageView;
+
+@property(nonatomic,strong)UIImageView *reweetBgimagView;
+@property(nonatomic,strong)ThemeLable *reweetTextLable;
+
 @end
