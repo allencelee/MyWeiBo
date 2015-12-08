@@ -10,5 +10,5 @@
 #import "MyTableViewCell.h"
 #import "CellLayoutModel.h"
 @interface MyTableView : UITableView<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,strong)NSArray *data;
+@property(nonatomic,strong)NSMutableArray *data;
 @end

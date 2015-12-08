@@ -54,6 +54,7 @@
 
 @property (nonatomic,strong)UserModel *user;        //用户信息
 @property (nonatomic,strong)WeiboModel <Optional>*retweeted_status;    //转发微博
+@property(nonatomic, strong)NSArray<Optional>* pic_urls;    //微博多图的url数组(注意的是如果他有值，上面的thumbnail_pic才有值)
 
 
 @end

@@ -12,17 +12,21 @@
 #import "ThemeLable.h"
 #import "UIUtils.h"
 #import "CellLayoutModel.h"
-@interface MyTableViewCell : UITableViewCell
+#import "WXLabel.h"
+@interface MyTableViewCell : UITableViewCell<WXLabelDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet ThemeLable *userName;
 @property (weak, nonatomic) IBOutlet ThemeLable *creatTime;
 @property (weak, nonatomic) IBOutlet ThemeLable *source;
 //@property(nonatomic,strong)WeiboModel *model;
 @property(nonatomic,strong)CellLayoutModel *layoutModel;
-@property(nonatomic,strong)UILabel *weiboTextLable;
+@property(nonatomic,strong)WXLabel *weiboTextLable;
 @property(nonatomic,strong)UIImageView *weiboImageView;
 
-@property(nonatomic,strong)UIImageView *reweetBgimagView;
-@property(nonatomic,strong)ThemeLable *reweetTextLable;
+@property(nonatomic,strong)ThemeImageView *reweetBgimagView;
+@property(nonatomic,strong)WXLabel *reweetTextLable;
 
+@property(nonatomic,strong)UIImageView *reweetImgView;
+@property(nonatomic,strong)NSMutableArray *imgViewArr;
+@property(nonatomic,strong)NSMutableArray *reweetImgViewArr;
 @end

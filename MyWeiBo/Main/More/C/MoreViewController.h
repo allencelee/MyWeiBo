@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "ThemeViewController.h"
+#import "AppDelegate.h"
 @interface MoreViewController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet ThemeImageView *row1Image;

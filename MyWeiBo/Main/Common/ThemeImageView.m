@@ -28,7 +28,13 @@
 
 -(void)loadImg{
 
-    self.image = [[TheameManager sharedInstance] getTheameImage:_imgName];
+    UIImage *img = [[TheameManager sharedInstance] getTheameImage:_imgName];
     
+    self.image = [img resizableImageWithCapInsets:self.edgeInsets resizingMode:UIImageResizingModeStretch];
+}
+
+-(void)dealloc{
+
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 @end

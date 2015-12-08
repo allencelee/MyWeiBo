@@ -51,6 +51,7 @@
   
     [self setSinaWeiboSDk];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeAuthData) name:@"logout" object:nil];
     return YES;
 }
 
@@ -66,12 +67,12 @@
         _sinaWeibo.expirationDate = [sinaWeiboInfo objectForKey:@"ExpirationDateKey"];
         _sinaWeibo.userID = [sinaWeiboInfo objectForKey:@"UserIDKey"];
     }
-
 }
 
 -(void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo{
 
     [self storeAuthData];
+
     
 }
 
@@ -95,6 +96,9 @@
 
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SinaWeiboAouthData"];
     [[NSUserDefaults standardUserDefaults]synchronize];
+    
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

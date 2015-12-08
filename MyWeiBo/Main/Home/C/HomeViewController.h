@@ -9,9 +9,11 @@
 #import "BaseViewController.h"
 #import "WeiboModel.h"
 #import "MyTableView.h"
+#import "MJRefresh.h"
+#import "BaseTabBarViewController.h"
 @interface HomeViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet MyTableView *homeTableView;
-
+@property(nonatomic,strong)ThemeImageView *showLoadImgView;
 
 @end

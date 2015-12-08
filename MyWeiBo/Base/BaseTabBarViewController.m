@@ -15,6 +15,7 @@
     [super viewDidLoad];
     [self creatSubC];
     [self creatTabbar];
+    [self loadUnreadData];
 
 }
 
@@ -104,6 +105,44 @@
     }
 }
 
+-(ThemeImageView*)loadUnreadImgView{
+
+    if (_loadUnreadImgView == nil) {
+        _loadUnreadImgView = [[ThemeImageView alloc]initWithFrame:CGRectMake(kScreenWidth/5-30, 0, 30, 30)];
+        _loadUnreadImgView.hidden = YES;
+        _loadUnreadImgView.imgName = @"number_notify_9.png";
+        [self.tabBar addSubview:_loadUnreadImgView];
+        
+        ThemeLable *lable = [[ThemeLable alloc]initWithFrame:_loadUnreadImgView.bounds];
+        lable.textAlignment = NSTextAlignmentCenter;
+        lable.backgroundColor = [UIColor clearColor];
+        lable.tag = 2002;
+        [_loadUnreadImgView addSubview:lable];
+    }
+    return _loadUnreadImgView;
+}
+
+-(void)loadUnreadData{
+
+    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [delegate.sinaWeibo requestWithURL:@"remind/unread_count.json" params:nil httpMethod:@"GET" delegate:self];
+    [self performSelector:@selector(loadUnreadData) withObject:nil afterDelay:60];
+    
+}
+
+-(void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result{
+
+    int num = [result[@"status"] intValue];
+    if (num>0) {
+        
+        _loadUnreadImgView.hidden = NO;
+        UILabel *lable = (UILabel*)[_loadUnreadImgView viewWithTag:2002];
+        lable.text = [NSString stringWithFormat:@"%d",num];
+    }else{
+    
+        _loadUnreadImgView.hidden = YES;
+    }
+}
 
 -(void)dealloc{
 

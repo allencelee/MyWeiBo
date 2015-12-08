@@ -154,20 +154,20 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3lU-xC-7Ys" id="blR-kA-fFq">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退出登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koF-TL-4pW" customClass="ThemeLable">
-                                                    <rect key="frame" x="250" y="15" width="100" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退出登录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBd-Xd-Jhs" customClass="ThemeLable">
+                                                    <rect key="frame" x="266" y="19" width="68" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="lvu-az-LXp"/>
+                                                        <constraint firstAttribute="width" constant="68" id="XmS-i8-fut"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="koF-TL-4pW" firstAttribute="top" secondItem="blR-kA-fFq" secondAttribute="top" constant="15" id="XbS-MY-6l7"/>
-                                                <constraint firstAttribute="centerX" secondItem="koF-TL-4pW" secondAttribute="centerX" id="hBC-rA-Pmg"/>
-                                                <constraint firstAttribute="bottom" secondItem="koF-TL-4pW" secondAttribute="bottom" constant="14" id="mcr-e2-YZG"/>
+                                                <constraint firstAttribute="centerX" secondItem="lBd-Xd-Jhs" secondAttribute="centerX" id="1k5-FX-62p"/>
+                                                <constraint firstItem="lBd-Xd-Jhs" firstAttribute="top" secondItem="blR-kA-fFq" secondAttribute="topMargin" constant="11" id="C0C-7c-hDi"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="lBd-Xd-Jhs" secondAttribute="bottom" constant="11" id="fjH-cn-xPr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -188,7 +188,7 @@
                         <outlet property="row2Lable" destination="OMa-jb-j5N" id="90n-57-NPx"/>
                         <outlet property="row3Image" destination="zvx-Pr-B2Z" id="tf5-Xf-OhE"/>
                         <outlet property="row3Lable" destination="N94-QG-Wab" id="t0e-yp-2Re"/>
-                        <outlet property="row4Lable" destination="koF-TL-4pW" id="gEj-Jc-aXS"/>
+                        <outlet property="row4Lable" destination="lBd-Xd-Jhs" id="DQy-KJ-QJ5"/>
                         <outlet property="themeLable" destination="1Bv-eD-zwX" id="ew4-iD-JTq"/>
                     </connections>
                 </tableViewController>

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface BaseTabBarViewController : UITabBarController
+#import "AppDelegate.h"
+@interface BaseTabBarViewController : UITabBarController<SinaWeiboRequestDelegate>
 
 @property(nonatomic,strong)ThemeImageView *selectImg;
+@property(nonatomic,strong)ThemeImageView *loadUnreadImgView;
 -(void)creatTabbar;
 @end

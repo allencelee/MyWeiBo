@@ -10,4 +10,5 @@
 
 @interface ThemeImageView : UIImageView
 @property(nonatomic,copy)NSString *imgName;
+@property(nonatomic,assign)UIEdgeInsets edgeInsets;
 @end

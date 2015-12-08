@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "SinaWeibo.h"
 #import "cellLayoutModel.h"
+#import <AudioToolbox/AudioToolbox.h>
+
 @interface HomeViewController ()<SinaWeiboRequestDelegate>
 
 @end
@@ -20,13 +22,63 @@
     [super viewDidLoad];
     SinaWeibo *sinaWibo = [self sinaweibo];
     
+    NSArray *saveDataArr = (NSArray*)[[NSUserDefaults standardUserDefaults] objectForKey:@"saveData"];
+    
+    
+    if (saveDataArr != nil) {
+        
+        _homeTableView.data = [saveDataArr mutableCopy];
+    }
+    
     if (sinaWibo.isAuthValid) {
         
-        [sinaWibo requestWithURL:@"statuses/home_timeline.json" params:nil httpMethod:@"GET" delegate:self];
+        [self loadData];
     }else{
     
         [sinaWibo logIn];
     }
+    __weak HomeViewController *weakSelf = self;
+    self.homeTableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf loadData];
+    }];
+    
+    self.homeTableView.footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        
+        [weakSelf loadOldData];
+    }];
+}
+
+-(void)loadData{
+    SinaWeibo *sinaWeibo = [self sinaweibo];
+
+    long sinceId = 0;
+    if (self.homeTableView.data > 0) {
+        
+        CellLayoutModel *layoutModel = self.homeTableView.data[0];
+        sinceId = layoutModel.weiboModel.id;
+    }
+    NSDictionary *dic = @{@"since_id":[NSString stringWithFormat:@"%ld",sinceId]};
+    
+    [sinaWeibo requestWithURL:@"statuses/home_timeline.json"
+                       params:[dic mutableCopy]
+                   httpMethod:@"GET"
+                     delegate:self];
+    
+}
+
+-(void)loadOldData{
+
+    SinaWeibo *sinaWeibo = [self sinaweibo];
+    long sinceId = 0;
+    if (self.homeTableView.data > 0) {
+        
+        CellLayoutModel *layout = [_homeTableView.data lastObject];
+        sinceId = layout.weiboModel.id;
+        
+    }
+    NSDictionary *dic = @{@"max_id":[NSString stringWithFormat:@"%ld",sinceId]};
+    [sinaWeibo requestWithURL:@"statuses/home_timeline.json" params:[dic mutableCopy] httpMethod:@"GET" delegate:self];
     
 }
 
@@ -54,10 +106,85 @@
         layout.weiboModel = weiboMdel;
         [data addObject:layout];
     }
-    _homeTableView.data = [data copy];
+    
+    NSArray *allKey = [request.params allKeys];
+    NSString *key = [allKey firstObject];
+    if ([key isEqualToString:@"since_id"]) {
+        BaseTabBarViewController *tabbarC = (BaseTabBarViewController*)[self tabBarController];
+        tabbarC.loadUnreadImgView.hidden = YES;
+        
+        [self showCount:data.count];
+        [data addObjectsFromArray:_homeTableView.data];
+
+        _homeTableView.data = data ;
+
+        [_homeTableView reloadData];
+    }else if ([key isEqualToString:@"max_id"]){
+    
+        CellLayoutModel *firstData = data[0];
+        CellLayoutModel *lastData = [self.homeTableView.data lastObject];
+        
+        if (firstData.weiboModel.id == lastData.weiboModel.id) {
+            
+            [data removeObject:firstData];
+        }
+        [_homeTableView.data addObjectsFromArray:data];
+    }
+    
+    
     [_homeTableView reloadData];
+    
+
+    
+//    [[NSUserDefaults standardUserDefaults] setObject:[_homeTableView.data copy] forKey:@"saveData"];
+    
+    [_homeTableView.header endRefreshing];
+    [_homeTableView.footer endRefreshing];
 
 }
+
+-(ThemeImageView*)showLoadImgView{
+
+    if (_showLoadImgView == nil) {
+        
+        _showLoadImgView = [[ThemeImageView alloc]initWithFrame:CGRectMake(5, -40, kScreenWidth-10,40)];
+        _showLoadImgView.imgName = @"timeline_notify.png";
+        [self.view addSubview:_showLoadImgView];
+        
+        UILabel *lable = [[UILabel alloc]initWithFrame:_showLoadImgView.bounds];
+        lable.backgroundColor = [UIColor clearColor];
+        lable.textAlignment = NSTextAlignmentCenter;
+        lable.tag = 1001;
+        [_showLoadImgView addSubview:lable];
+        
+    }
+    return _showLoadImgView;
+}
+
+-(void)showCount:(NSInteger)count{
+
+    UILabel *lable = (UILabel*)[self.showLoadImgView viewWithTag:1001];
+    NSString *str = [NSString stringWithFormat:@"%ld条新微博",count];
+    lable.text  = str;
+    
+    [UIView animateWithDuration:2 animations:^{
+        
+        self.showLoadImgView.transform = CGAffineTransformMakeTranslation(0, 40);
+    } completion:^(BOOL finished) {
+        
+        self.showLoadImgView.transform = CGAffineTransformIdentity;
+    }];
+    
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"msgcome.wav" ofType:nil];
+    SystemSoundID soundId = 0;
+    NSURL *url = [NSURL fileURLWithPath:path];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)(url), &soundId);
+    AudioServicesPlaySystemSound(soundId);
+    
+    
+}
+
+
 
 
 @end

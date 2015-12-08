@@ -10,6 +10,7 @@
 
 @interface MoreViewController ()
 
+
 @end
 
 @implementation MoreViewController
@@ -67,7 +68,23 @@
         [self.navigationController pushViewController:theme animated:YES];
     }
     
+    if (indexPath.section ==2 ) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"logout" object:nil];
+        
+    
+        SinaWeibo *sinaWeibo = [self sinaweibo];
+        [sinaWeibo logIn];
+    }
+    
 }
+
+-(SinaWeibo*)sinaweibo{
+    
+    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    return  delegate.sinaWeibo;
+}
+
+
 
 
 @end
