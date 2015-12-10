@@ -42,4 +42,16 @@ static NSString *identifier = @"MyTableViewCell";
 
     return layout.cellHeight;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CellLayoutModel *model = _data[indexPath.row];
+    
+    CommentViewController *commentViewC = [[CommentViewController alloc]init];
+    commentViewC.layout = model;
+    
+    BaseViewController *viewController = (BaseViewController*)self.superview.nextResponder;
+    [viewController.navigationController pushViewController:commentViewC animated:YES];
+}
+
 @end

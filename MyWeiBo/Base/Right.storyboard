@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pVW-P3-WoY">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -31,9 +32,79 @@
                     <view key="view" contentMode="scaleToFill" id="mQ9-fl-uxe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADC-kr-ff3" customClass="ThemeButton">
+                                <rect key="frame" x="544" y="242" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="1oy-2d-xWg"/>
+                                    <constraint firstAttribute="height" constant="46" id="KGG-84-OPV"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonAction:" destination="uRj-RR-1Gg" eventType="touchUpInside" id="Uw3-vC-tIK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ny-y7-FSY" customClass="ThemeButton">
+                                <rect key="frame" x="544" y="337" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="Gf1-qE-t14"/>
+                                    <constraint firstAttribute="width" constant="46" id="TR4-CT-13J"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonAction:" destination="uRj-RR-1Gg" eventType="touchUpInside" id="fdG-dG-0VK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oq7-5S-irP" customClass="ThemeButton">
+                                <rect key="frame" x="544" y="420" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="6aP-NA-E2r"/>
+                                    <constraint firstAttribute="height" constant="46" id="iGy-Kr-cxJ"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonAction:" destination="uRj-RR-1Gg" eventType="touchUpInside" id="ZAH-VJ-2cF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsQ-l6-5ac" customClass="ThemeButton">
+                                <rect key="frame" x="544" y="485" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="3SG-4q-fHa"/>
+                                    <constraint firstAttribute="height" constant="46" id="FLm-7O-n2p"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonAction:" destination="uRj-RR-1Gg" eventType="touchUpInside" id="uC7-8j-Vro"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7ny-y7-FSY" firstAttribute="top" secondItem="ADC-kr-ff3" secondAttribute="bottom" constant="49" id="266-hI-u6J"/>
+                            <constraint firstItem="ADC-kr-ff3" firstAttribute="top" secondItem="5ak-Ho-cbv" secondAttribute="bottom" constant="178" id="3az-Kl-Xvj"/>
+                            <constraint firstAttribute="trailing" secondItem="ADC-kr-ff3" secondAttribute="trailing" constant="10" id="91f-GO-uiz"/>
+                            <constraint firstAttribute="trailing" secondItem="7ny-y7-FSY" secondAttribute="trailing" constant="10" id="99G-Kr-eUD"/>
+                            <constraint firstItem="zsQ-l6-5ac" firstAttribute="top" secondItem="oq7-5S-irP" secondAttribute="bottom" constant="19" id="Q1f-oK-OLY"/>
+                            <constraint firstAttribute="trailing" secondItem="oq7-5S-irP" secondAttribute="trailing" constant="10" id="SsJ-9K-m6O"/>
+                            <constraint firstAttribute="trailing" secondItem="zsQ-l6-5ac" secondAttribute="trailing" constant="10" id="VM6-OJ-MTt"/>
+                            <constraint firstItem="oq7-5S-irP" firstAttribute="top" secondItem="7ny-y7-FSY" secondAttribute="bottom" constant="37" id="enE-iL-NXf"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cIv-Fb-rTo"/>
+                    <connections>
+                        <outlet property="cameraButton" destination="7ny-y7-FSY" id="9SW-FF-xRn"/>
+                        <outlet property="photoButton" destination="oq7-5S-irP" id="uXv-G9-4Ux"/>
+                        <outlet property="videoButton" destination="zsQ-l6-5ac" id="vSD-sz-yXP"/>
+                        <outlet property="writeButton" destination="ADC-kr-ff3" id="B1U-m8-7dm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ipo-Ws-quy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

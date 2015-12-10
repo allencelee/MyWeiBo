@@ -11,7 +11,7 @@
 #import "SinaWeibo.h"
 #import "cellLayoutModel.h"
 #import <AudioToolbox/AudioToolbox.h>
-
+#import "CommentViewController.h"
 @interface HomeViewController ()<SinaWeiboRequestDelegate>
 
 @end
@@ -50,6 +50,7 @@
 }
 
 -(void)loadData{
+    [self mbprogress];
     SinaWeibo *sinaWeibo = [self sinaweibo];
 
     long sinceId = 0;
@@ -68,7 +69,8 @@
 }
 
 -(void)loadOldData{
-
+    
+    [self mbprogress];
     SinaWeibo *sinaWeibo = [self sinaweibo];
     long sinceId = 0;
     if (self.homeTableView.data > 0) {
@@ -80,6 +82,20 @@
     NSDictionary *dic = @{@"max_id":[NSString stringWithFormat:@"%ld",sinceId]};
     [sinaWeibo requestWithURL:@"statuses/home_timeline.json" params:[dic mutableCopy] httpMethod:@"GET" delegate:self];
     
+}
+
+-(void)mbprogress{
+
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    HUD.dimBackground = YES;
+    HUD.labelText = @"正在加载数据。。。";
+    // Regiser for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+    [HUD show:YES];
+    // Show the HUD while the provided method executes in a new thread
+//    [HUD showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
 }
 
 -(SinaWeibo*)sinaweibo{
@@ -140,6 +156,8 @@
     
     [_homeTableView.header endRefreshing];
     [_homeTableView.footer endRefreshing];
+    
+    [HUD hide:YES];
 
 }
 
@@ -183,6 +201,7 @@
     
     
 }
+
 
 
 

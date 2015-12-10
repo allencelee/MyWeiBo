@@ -7,7 +7,9 @@
 //
 
 #import "BaseViewController.h"
-
+#import "ThemeButton.h"
+#import "SendViewController.h"
+#import "BaseNavigationController.h"
 @interface RightViewController : BaseViewController
 
 @end

@@ -11,7 +11,9 @@
 #import "MyTableView.h"
 #import "MJRefresh.h"
 #import "BaseTabBarViewController.h"
-@interface HomeViewController : BaseViewController
+#import "MBProgressHUD.h"
+static MBProgressHUD *HUD;
+@interface HomeViewController : BaseViewController<MBProgressHUDDelegate>
 
 @property (weak, nonatomic) IBOutlet MyTableView *homeTableView;
 @property(nonatomic,strong)ThemeImageView *showLoadImgView;

@@ -72,6 +72,7 @@
 -(void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo{
 
     [self storeAuthData];
+    
 
     
 }
@@ -97,7 +98,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SinaWeiboAouthData"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
-    
+    [[self sinaWeibo] logOut];
     
 }
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MyTableViewCell.h"
 #import "CellLayoutModel.h"
+#import "CommentViewController.h"
 @interface MyTableView : UITableView<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)NSMutableArray *data;
 @end

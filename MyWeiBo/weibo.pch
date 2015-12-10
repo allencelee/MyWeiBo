@@ -9,6 +9,7 @@
 #ifndef MyWeiBo_weibo_pch
 #define MyWeiBo_weibo_pch
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #import "MMDrawerController.h"
 #import "MMExampleDrawerVisualStateManager.h"
 #import "SinaWeibo.h"
