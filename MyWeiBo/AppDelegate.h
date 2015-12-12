@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Common.h"
+#import "MMDrawerController.h"
+#import "MMDrawerVisualState.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate,SinaWeiboDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

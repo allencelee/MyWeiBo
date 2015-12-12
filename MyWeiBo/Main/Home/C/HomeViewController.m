@@ -18,8 +18,27 @@
 
 @implementation HomeViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    MMDrawerController *mmdraw = [self mm_drawerController];
+    [mmdraw setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [mmdraw setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+
+    [super viewWillDisappear:animated];
+    MMDrawerController *mmdraw = [self mm_drawerController];
+    [mmdraw setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+    [mmdraw setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
+    
     SinaWeibo *sinaWibo = [self sinaweibo];
     
     NSArray *saveDataArr = (NSArray*)[[NSUserDefaults standardUserDefaults] objectForKey:@"saveData"];
@@ -201,6 +220,8 @@
     
     
 }
+
+
 
 
 

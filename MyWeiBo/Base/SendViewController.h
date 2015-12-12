@@ -11,6 +11,9 @@
 #import "UIViewExt.h"
 #import "MMDrawerController.h"
 #import "DataService.h"
-@interface SendViewController : BaseViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "UIViewController+MMDrawerController.h"
+#import "MBProgressHUD.h"
+#import "FaceView.h"
+@interface SendViewController : BaseViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>
 
 @end

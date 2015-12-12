@@ -41,4 +41,9 @@
     UIImage *img = [manager getTheameImage:_imgName];
     [self setImage:img forState:UIControlStateNormal];
 }
+
+-(void)dealloc{
+
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 @end

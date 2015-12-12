@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import "FaceView.h"
 @interface ProfileViewController : BaseViewController
 
 @end

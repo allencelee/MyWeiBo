@@ -36,6 +36,7 @@
     [self.drawController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.drawController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     
+
     
     [self.drawController
      setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {

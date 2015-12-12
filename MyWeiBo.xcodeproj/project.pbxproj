@@ -57,6 +57,7 @@
 		889114771C15822E00E9D9BD /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 889114741C15822E00E9D9BD /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		889114781C15822E00E9D9BD /* WXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 889114761C15822E00E9D9BD /* WXLabel.m */; };
 		8891147A1C158B2200E9D9BD /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889114791C158B2200E9D9BD /* libicucore.dylib */; };
+		88A5B8A51C1A7578003C0700 /* FaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5B8A41C1A7578003C0700 /* FaceView.m */; };
 		88A7EF5A1C0D3D10006037F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A7EF591C0D3D10006037F7 /* main.m */; };
 		88A7EF5D1C0D3D10006037F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A7EF5C1C0D3D10006037F7 /* AppDelegate.m */; };
 		88A7EF651C0D3D10006037F7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88A7EF641C0D3D10006037F7 /* Images.xcassets */; };
@@ -553,6 +554,8 @@
 		889114751C15822E00E9D9BD /* WXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXLabel.h; sourceTree = "<group>"; };
 		889114761C15822E00E9D9BD /* WXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXLabel.m; sourceTree = "<group>"; };
 		889114791C158B2200E9D9BD /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		88A5B8A31C1A7578003C0700 /* FaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceView.h; sourceTree = "<group>"; };
+		88A5B8A41C1A7578003C0700 /* FaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceView.m; sourceTree = "<group>"; };
 		88A7EF541C0D3D10006037F7 /* MyWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A7EF581C0D3D10006037F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88A7EF591C0D3D10006037F7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1226,6 +1229,8 @@
 				88A7F2481C0D7849006037F7 /* Right.storyboard */,
 				888CFBF11C195DA7007E95E9 /* SendViewController.h */,
 				888CFBF21C195DA7007E95E9 /* SendViewController.m */,
+				88A5B8A31C1A7578003C0700 /* FaceView.h */,
+				88A5B8A41C1A7578003C0700 /* FaceView.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2378,6 +2383,7 @@
 				88CED7941C1686BC00B1CE70 /* MJRefreshFooter.m in Sources */,
 				885B81411C117305005D4EEA /* SDWebImageDownloader.m in Sources */,
 				88CED7921C1686BC00B1CE70 /* MJRefreshBackFooter.m in Sources */,
+				88A5B8A51C1A7578003C0700 /* FaceView.m in Sources */,
 				885B81481C117305005D4EEA /* UIImage+WebP.m in Sources */,
 				887B8EB41C1135490036891F /* JSONHTTPClient.m in Sources */,
 				88CED7A11C1686BC00B1CE70 /* UIScrollView+MJExtension.m in Sources */,

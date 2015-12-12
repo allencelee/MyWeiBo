@@ -12,6 +12,7 @@
 #import "MJRefresh.h"
 #import "BaseTabBarViewController.h"
 #import "MBProgressHUD.h"
+#import "UIViewController+MMDrawerController.h"
 static MBProgressHUD *HUD;
 @interface HomeViewController : BaseViewController<MBProgressHUDDelegate>
 

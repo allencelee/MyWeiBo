@@ -8,18 +8,32 @@
 
 #import "SendViewController.h"
 
+#define itemWidth (kScreenWidth/7)
+#define itemHeight (kScreenWidth/7)
+
 @interface SendViewController ()
+{
+
+    UIScrollView *scrollView;
+    FaceView *view;
+    UIView *baseView;
+}
 @property(nonatomic,strong)UITextView *textView;
 @property(nonatomic,strong)UIView *editView;
 @property(nonatomic,strong)UIImage *sendImg;
 @end
 
-@implementation SendViewController
+@implementation SendViewController{
+
+    MBProgressHUD *hudSend;
+    UIPageControl *pageC;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self creatNaviButton];
     [self creatEditorView];
+    [self creatFaceView];
     
 }
 
@@ -58,7 +72,7 @@
     [self.view addSubview:_textView];
     
     _editView = [[UIView alloc]initWithFrame:CGRectMake(0, _textView.bottom, kScreenWidth, 55)];
-    _editView.backgroundColor = [UIColor blackColor];
+    _editView.backgroundColor = [UIColor clearColor];
     
     NSArray *buttonName = @[
                             @"compose_toolbar_1.png",
@@ -89,19 +103,80 @@
 
 -(void)sendAction{
 
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"status":_textView.text}];
-    NSData *imageData = UIImageJPEGRepresentation(_sendImg, 1);
-    if (imageData.length > 3*1024*1024) {
-        imageData = UIImageJPEGRepresentation(_sendImg, 0.5);
+    NSString *message = nil;
+    
+    if (_textView.text.length == 0) {
+        message = @"啥都没写，发个j8";
+    }else if (_textView.text.length > 140){
+        
+        message = @"内容太j8长了，少写点";
+        
+    }else{
+         hudSend = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hudSend.labelText = @"正在发送。。。";
+
+        
     }
-    NSDictionary *fileDic = @{@"pic":imageData};
     
-    [DataService requestUrl:@"statuses/upload.json" httpMethod:@"POST" params:params fileData:[fileDic mutableCopy] success:^(id result) {
-        NSLog(@"发送成功");
-    } failure:^(NSError *error) {
-        NSLog(@"发送失败，%@",error);
-    }];
+    if (message != nil) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
+        return;
+    }
+
+    [self sendStatus];
+}
+
+-(void)sendStatus{
+
     
+    NSString *urlString = nil;
+    NSDictionary *fileDic = nil;
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"status":_textView.text}];
+    
+    if (_sendImg) {
+        
+        urlString = @"statuses/upload.json";
+        
+        NSData *imageData = UIImageJPEGRepresentation(_sendImg, 1);
+        if (imageData.length > 3*1024*1024) {
+            imageData = UIImageJPEGRepresentation(_sendImg, 0.5);
+        }
+        fileDic = @{@"pic":imageData};
+        
+        [DataService requestUrl:urlString httpMethod:@"POST" params:params fileData:[fileDic mutableCopy] success:^(id result) {
+
+            hudSend.hidden = YES;
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.customView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"37x-Checkmark@2x.png"]];
+            hud.labelText = @"发送成功";
+            [hud hide:YES afterDelay:1];
+            
+            
+            
+            
+        } failure:^(NSError *error) {
+            NSLog(@"发送失败，%@",error);
+        }];
+    }else{
+    
+        NSString *urlString = @"statuses/update.json";
+        
+        [DataService requestUrl:urlString httpMethod:@"POST" params:params fileData:[fileDic mutableCopy] success:^(id result) {
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.customView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"37x-Checkmark@2x.png"]];
+            hud.labelText = @"发送成功";
+            [hud hide:YES afterDelay:2];
+            
+
+        } failure:^(NSError *error) {
+            NSLog(@"发送失败，%@",error);
+        }];
+
+    }
 }
 
 -(void)keyboardShow:(NSNotification*)noti{
@@ -125,7 +200,75 @@
         UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"相册", nil];
         [sheet showInView:self.view];
     }
+    
+    if (button.tag == 1004) {
+        
+        if ([_textView isFirstResponder]) {
+            
+            [self showFaceVeiw];
+        }else{
+        
+            [self hiddenFaceVeiw];
+        }
+        
+        
+        
+    }
 }
+
+
+
+-(void)creatFaceView{
+    
+
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    view = [[FaceView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    view.backgroundColor = [UIColor clearColor];
+    [view addObserver:self forKeyPath:@"selectedName" options:NSKeyValueObservingOptionNew context:nil];
+    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, view.height)];
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.delegate = self;
+    scrollView.clipsToBounds = NO;
+    
+    scrollView.contentSize = CGSizeMake(view.width, view.height);
+    [scrollView addSubview:view];
+    scrollView.pagingEnabled = YES;
+    
+    //添加pageControl
+    pageC = [[UIPageControl alloc]initWithFrame:CGRectMake(0, scrollView.bottom, kScreenWidth, 20)];
+    pageC.numberOfPages = view.items.count;
+    
+    baseView = [[UIView alloc]initWithFrame:CGRectMake(0, kScreenHeight-64, kScreenWidth, view.height + pageC.height)];
+    baseView.backgroundColor = [UIColor grayColor];
+    
+    [baseView addSubview:pageC];
+    [baseView addSubview:scrollView];
+    [self.view addSubview:baseView];
+    
+}
+
+-(void)showFaceVeiw{
+    
+    [_textView resignFirstResponder];
+ 
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        baseView.transform = CGAffineTransformMakeTranslation(0, -baseView.height);
+        _editView.bottom = baseView.top;
+        _textView.height = baseView.height + _editView.height;
+    }];
+}
+
+-(void)hiddenFaceVeiw{
+
+    [_textView becomeFirstResponder];
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        baseView.transform = CGAffineTransformIdentity;
+    }];
+}
+
+
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
 
@@ -148,4 +291,22 @@
     [_editView addSubview:imageV];
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    int index = scrollView.contentOffset.x/kScreenWidth;
+    pageC.currentPage = index;
+}
+
+#pragma mark - KVO
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+
+    NSString *faceName = [change objectForKey:@"new"];
+    _textView.text = [NSString stringWithFormat:@"%@%@",_textView.text,faceName];
+}
+
+-(void)dealloc{
+
+    [view removeObserver:self forKeyPath:@"selectedName"];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 @end
