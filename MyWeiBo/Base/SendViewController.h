@@ -14,6 +14,7 @@
 #import "UIViewController+MMDrawerController.h"
 #import "MBProgressHUD.h"
 #import "FaceView.h"
-@interface SendViewController : BaseViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>
+#import <CoreLocation/CoreLocation.h>
+@interface SendViewController : BaseViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,CLLocationManagerDelegate>
 
 @end

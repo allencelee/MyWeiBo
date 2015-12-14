@@ -367,7 +367,7 @@
         // Set label properties
         label.font = self.labelFont;
         label.adjustsFontSizeToFitWidth = NO;
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         label.opaque = NO;
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
@@ -397,7 +397,7 @@
             // Set label properties
             detailsLabel.font = self.detailsLabelFont;
             detailsLabel.adjustsFontSizeToFitWidth = NO;
-            detailsLabel.textAlignment = UITextAlignmentCenter;
+            detailsLabel.textAlignment = NSTextAlignmentCenter;
             detailsLabel.opaque = NO;
             detailsLabel.backgroundColor = [UIColor clearColor];
             detailsLabel.textColor = [UIColor whiteColor];
@@ -405,9 +405,21 @@
             detailsLabel.numberOfLines = 0;
 
 			CGFloat maxHeight = frame.size.height - self.height - 2*margin;
-			CGSize labelSize = [detailsLabel.text sizeWithFont:detailsLabel.font constrainedToSize:CGSizeMake(frame.size.width - 4*margin, maxHeight) lineBreakMode:detailsLabel.lineBreakMode];
-            lHeight = labelSize.height;
-            lWidth = labelSize.width;
+            
+//			CGSize labelSize = [detailsLabel.text sizeWithFont:detailsLabel.font constrainedToSize:CGSizeMake(frame.size.width - 4*margin, maxHeight) lineBreakMode:detailsLabel.lineBreakMode];
+            NSDictionary *dic = @{
+                                  NSAttachmentAttributeName:detailsLabel.font,
+                                  NSForegroundColorAttributeName:[UIColor grayColor]
+                                  
+                                  };
+            
+            CGRect lableRect = [detailsLabel.text boundingRectWithSize:CGSizeMake(frame.size.width - 4*margin, maxHeight) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+            
+//            lHeight = labelSize.height;
+//            lWidth = labelSize.width;
+            
+            lHeight = lableRect.size.height;
+            lWidth = lableRect.size.width;
 			
             // Update HUD size
             if (self.width < lWidth) {

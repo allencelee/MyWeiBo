@@ -14,19 +14,23 @@
 @interface SendViewController ()
 {
 
-    UIScrollView *scrollView;
+    UIScrollView *myScrollView;
     FaceView *view;
     UIView *baseView;
+    NSString *address;
+    
 }
 @property(nonatomic,strong)UITextView *textView;
 @property(nonatomic,strong)UIView *editView;
 @property(nonatomic,strong)UIImage *sendImg;
+@property(nonatomic,strong)CLLocationManager *manager;
 @end
 
 @implementation SendViewController{
 
     MBProgressHUD *hudSend;
     UIPageControl *pageC;
+    MBProgressHUD *addreHud;
 }
 
 - (void)viewDidLoad {
@@ -210,12 +214,33 @@
         
             [self hiddenFaceVeiw];
         }
+    }
+    if (button.tag == 1003) {
         
-        
-        
+        [self location];
     }
 }
+-(void)location{
 
+    //1.创建定位管理者
+    _manager = [[CLLocationManager alloc]init];
+    //是否开启定位服务
+    if ([CLLocationManager locationServicesEnabled] ) {
+        if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedWhenInUse) {
+            //是否授权
+            [_manager requestWhenInUseAuthorization];
+        }else{
+        
+            addreHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            
+            addreHud.labelText = @"正在定位";
+            
+            _manager.desiredAccuracy = kCLLocationAccuracyBest;
+            _manager.delegate = self;
+            [_manager startUpdatingLocation];
+        }
+    }
+}
 
 
 -(void)creatFaceView{
@@ -225,24 +250,25 @@
     view = [[FaceView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     view.backgroundColor = [UIColor clearColor];
     [view addObserver:self forKeyPath:@"selectedName" options:NSKeyValueObservingOptionNew context:nil];
-    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, view.height)];
-    scrollView.showsHorizontalScrollIndicator = NO;
-    scrollView.delegate = self;
-    scrollView.clipsToBounds = NO;
+    myScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, view.height)];
+    myScrollView.showsHorizontalScrollIndicator = NO;
     
-    scrollView.contentSize = CGSizeMake(view.width, view.height);
-    [scrollView addSubview:view];
-    scrollView.pagingEnabled = YES;
+    myScrollView.delegate = self;
+    myScrollView.clipsToBounds = NO;
+    
+    myScrollView.contentSize = CGSizeMake(view.width, view.height);
+    [myScrollView addSubview:view];
+    myScrollView.pagingEnabled = YES;
     
     //添加pageControl
-    pageC = [[UIPageControl alloc]initWithFrame:CGRectMake(0, scrollView.bottom, kScreenWidth, 20)];
+    pageC = [[UIPageControl alloc]initWithFrame:CGRectMake(0, myScrollView.bottom, kScreenWidth, 20)];
     pageC.numberOfPages = view.items.count;
     
     baseView = [[UIView alloc]initWithFrame:CGRectMake(0, kScreenHeight-64, kScreenWidth, view.height + pageC.height)];
     baseView.backgroundColor = [UIColor grayColor];
     
     [baseView addSubview:pageC];
-    [baseView addSubview:scrollView];
+    [baseView addSubview:myScrollView];
     [self.view addSubview:baseView];
     
 }
@@ -308,5 +334,65 @@
 
     [view removeObserver:self forKeyPath:@"selectedName"];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+#pragma mark - CLLocationManagerDelegate
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+
+    [_manager stopUpdatingLocation];
+    //位置信息
+    CLLocation *location = [locations lastObject];
+    //经纬度
+    CLLocationCoordinate2D coordinate2D = location.coordinate;
+    
+    double latitude = coordinate2D.latitude;
+    double longitude = coordinate2D.longitude;
+    
+    //新浪反编码
+    
+    /*
+    NSString *string = [NSString stringWithFormat:@"%f,%f",longitude,latitude];
+    NSDictionary *dic = @{@"coordinate":string};
+    [DataService requestUrl:@"location/geo/geo_to_address.json" httpMethod:@"GET" params:[dic mutableCopy] fileData:nil success:^(id result) {
+        NSLog(@"请求成功");
+        [addreHud hide:YES];
+        NSArray *arr = result[@"geos"];
+        NSDictionary *dic = [arr lastObject];
+        address = dic[@"address"];
+        NSLog(@"%@",address);
+        
+        [self showDistance];
+        
+    } failure:^(NSError *error) {
+        NSLog(@"请求失败");
+    }];
+     */
+    //ios反编码
+    
+    CLGeocoder *coder = [[CLGeocoder alloc]init];
+    
+    [coder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+        CLPlacemark *mark = [placemarks lastObject];
+
+        NSDictionary *dic = mark.addressDictionary;
+        
+//        address = mark.name;
+//        address = dic[@"Name"];
+        NSString *string = [NSString stringWithFormat:@"%@%@%@%@%@",dic[@"Country"],dic[@"City"],dic[@"SubLocality"],dic[@"Street"],dic[@"Name"]];
+        address = string;
+        [self showDistance];
+        [addreHud hide:YES];
+    }];
+    
+    
+    NSLog(@"%@",location);
+}
+
+-(void)showDistance{
+
+    UILabel *lable = [[UILabel alloc]initWithFrame:CGRectMake(0, _editView.top-30, kScreenWidth-20, 30)];
+    lable.text = address;
+    [self.view addSubview:lable];
 }
 @end

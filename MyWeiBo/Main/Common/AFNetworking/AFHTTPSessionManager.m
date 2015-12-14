@@ -44,10 +44,12 @@
 
 @interface AFHTTPSessionManager ()
 @property (readwrite, nonatomic, strong) NSURL *baseURL;
+
 @end
 
 @implementation AFHTTPSessionManager
 
+@dynamic responseSerializer;
 + (instancetype)manager {
     return [[[self class] alloc] initWithBaseURL:nil];
 }

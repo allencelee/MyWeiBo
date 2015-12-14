@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Base Navigation Controller-->
@@ -32,7 +33,38 @@
                     <view key="view" contentMode="scaleToFill" id="Cel-8X-Eyo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZf-rs-cbw">
+                                <rect key="frame" x="106" y="179" width="89" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="89" id="3lA-98-fmy"/>
+                                    <constraint firstAttribute="height" constant="83" id="qFW-21-usi"/>
+                                </constraints>
+                                <state key="normal" image="附近微博.jpg">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonAction:" destination="wtm-ep-sq3" eventType="touchUpInside" id="mye-6d-9GN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPb-QH-Rnm">
+                                <rect key="frame" x="246" y="179" width="85" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="9yW-0G-E2s"/>
+                                    <constraint firstAttribute="height" constant="83" id="MkB-rQ-nMy"/>
+                                </constraints>
+                                <state key="normal" image="附近的人.jpg">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NPb-QH-Rnm" firstAttribute="leading" secondItem="OZf-rs-cbw" secondAttribute="trailing" constant="51" id="8Oq-Oe-27G"/>
+                            <constraint firstItem="OZf-rs-cbw" firstAttribute="top" secondItem="o1N-Fh-pdE" secondAttribute="bottom" constant="115" id="cDM-RV-WKe"/>
+                            <constraint firstItem="OZf-rs-cbw" firstAttribute="leading" secondItem="Cel-8X-Eyo" secondAttribute="leadingMargin" constant="90" id="cPI-Ew-bVb"/>
+                            <constraint firstItem="NPb-QH-Rnm" firstAttribute="top" secondItem="o1N-Fh-pdE" secondAttribute="bottom" constant="115" id="wnn-8R-Ttl"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="附近" id="ho6-HT-tL6"/>
                 </viewController>
@@ -41,4 +73,8 @@
             <point key="canvasLocation" x="120" y="227"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="附近微博.jpg" width="184" height="184"/>
+        <image name="附近的人.jpg" width="184" height="184"/>
+    </resources>
 </document>

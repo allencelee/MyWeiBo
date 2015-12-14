@@ -10,6 +10,7 @@
 
 @interface DiscoverViewController ()
 
+
 @end
 
 @implementation DiscoverViewController
@@ -18,6 +19,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
+- (IBAction)buttonAction:(id)sender {
+    
+    MapViewController *map = [[MapViewController alloc]init];
+    
+    [self.navigationController pushViewController:map animated:YES];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import "MapViewController.h"
 @interface DiscoverViewController : BaseViewController
 
 @end
